@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         chart:
-          - path: charts/chatbot
+          - path: charts/ai-software-templates/chatbot
             package: chatbot-ai-software-template
     steps:
       - name: Checkout

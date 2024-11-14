@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  chatbot-ai-software-template:
+  - annotations:
+      charts.openshift.io/name: Chatbot AI Software Template
+    apiVersion: v2
+    created: "2024-11-14T16:52:58.770133147-05:00"
+    description: A helm chart for the AI Software Templates. For more information
+      please check https://github.com/redhat-ai-dev/ai-lab-helm-charts.git
+    digest: 42f53e30cb38288a25a7055500a4fb15dcb2b514794459faa30bcccca74aa9f9
+    kubeVersion: '>= 1.27.0-0'
+    name: chatbot-ai-software-template
+    tags: chatbot,llama.cpp,ai-lab
+    urls:
+    - chatbot-ai-software-template-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-11-14T16:52:58.769779998-05:00"

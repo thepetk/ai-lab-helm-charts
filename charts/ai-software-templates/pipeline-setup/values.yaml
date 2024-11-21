@@ -1,7 +1,11 @@
-
 tekton:
-  quayConfigJSON: '< your config.json file contents, ideally in compact, single line format>'
+  # -- [REQUIRED] The quay.io config.json used when the application image will be pushed.
+  quayConfigJSON: "< your config.json file contents, ideally in compact, single line format>"
+  # -- The name of the Secret containing the required Quay token.
   quaySecretName: ai-lab-image-registry-token
+  # -- The name of the Secret containing the required Github token.
   gitSecretToken: "<your git token>"
+  # -- The name of the Secret's key with the Github token value.
   gitSecretName: github-secrets
+  # -- [REQUIRED] The Github token value.
   gitSecretKeyToken: password

@@ -1,4 +1,3 @@
-
 # OpenShift Pipelines Installation / Configuration for Devtools AI Sample Applications.
 
 This repo is a Helm chart that a user with Cluster Admin level privileges would run to set up OpenShift Pipelines for the Devtools AI sample applications. For more information about helm charts see the official [Helm Charts Documentation](https://helm.sh/).
@@ -35,15 +34,9 @@ your local fork of this repository a value settings file outside of git manageme
 helm upgrade --install <release-name> --namespace openshift-pipelines --create-namespace -f ./private-values.yaml .
 ```
 
+
 Below is a table of each value used to configure this chart. Note:
 
 - Your helm release's name will be used to as a prefix for the `Subscription` instance used to initiate the install of OpenShift Pipelines.
 
-## Values
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| tekton.gitAppId | string | `"<your github application ID"` | [REQUIRED] The GitHub Application ID |
-| tekton.gitAppPrivateKey | string | `"< your multi-line and encoded github application private key >"` | [REQUIRED] The GitHub Application Private Key |
-| tekton.gitAppWebhookSecret | string | `"<your github application webhook secret>"` | [REQUIRED] The GitHub Application Webhook Secret |
-
+{{ template "chart.valuesSection" . }}

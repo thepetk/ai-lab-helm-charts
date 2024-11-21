@@ -1,5 +1,7 @@
-
 tekton:
-  gitAppId: '<your github application ID'
-  gitAppWebhookSecret: '<your github application webhook secret>'
-  gitAppPrivateKey: '< your multi-line and encoded github application private key >'
+  # -- [REQUIRED] The GitHub Application ID
+  gitAppId: "<your github application ID"
+  # -- [REQUIRED] The GitHub Application Webhook Secret
+  gitAppWebhookSecret: "<your github application webhook secret>"
+  # -- [REQUIRED] The GitHub Application Private Key
+  gitAppPrivateKey: "< your multi-line and encoded github application private key >"

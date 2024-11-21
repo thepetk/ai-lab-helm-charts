@@ -1,35 +1,38 @@
 {
-    "$schema": "http://json-schema.org/schema#",
-    "type": "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "properties": {
         "tekton": {
-            "type": "object",
             "properties": {
-                "quayConfigJSON": {
-                    "type": "string",
-                    "description": "[REQUIRED] The quay.io config.json used when the application image will be pushed."
-                },
-                "quaySecretName": {
-                    "type": "string",
-                    "description": "The name of the Secret containing the required Quay token. If blank it defaults to 'ai-lab-image-registry-token'.",
-                    "default": "ai-lab-image-registry-token"
+                "gitSecretKeyToken": {
+                    "default": "password",
+                    "description": "The name of the Secret's key with the Github token value.",
+                    "type": "string"
                 },
                 "gitSecretName": {
-                    "type": "string",
-                    "description": "The name of the Secret containing the required Github token. If blank it defaults to 'github-secrets'.",
-                    "default": "github-secrets"
-                },
-                "gitSecretKeyToken": {
-                    "type": "string",
-                    "description": "The name of the Secret's key with the Github token value. If blank it defaults to 'password'.",
-                    "default": "password"
+                    "default": "github-secrets",
+                    "description": "The name of the Secret containing the required Github token.",
+                    "type": "string"
                 },
                 "gitSecretToken": {
-                    "type": "string",
-                    "description": "[REQUIRED] The Github token value."
+                    "description": "[REQUIRED] The Github token value.",
+                    "type": "string"
+                },
+                "quayConfigJSON": {
+                    "description": "[REQUIRED] The quay.io config.json used when the application image will be pushed.",
+                    "type": "string"
+                },
+                "quaySecretName": {
+                    "default": "ai-lab-image-registry-token",
+                    "description": "The name of the Secret containing the required Quay token.",
+                    "type": "string"
                 }
-            }
+            },
+            "required": [
+                "quayConfigJSON",
+                "gitSecretToken"
+            ],
+            "type": "object"
         }
-    }
+    },
+    "type": "object"
 }
-

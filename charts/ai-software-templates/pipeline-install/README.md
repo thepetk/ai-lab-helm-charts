@@ -1,5 +1,9 @@
 
+
 # OpenShift Pipelines Installation / Configuration for Devtools AI Sample Applications.
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square)
+
+A Helm chart for installing the OpenShift Pipelines Operator, ensuring requisite features for our samples are enabled, as well as providing GitHub Application credentials to Pipelines As Code.
 
 This repo is a Helm chart that a user with Cluster Admin level privileges would run to set up OpenShift Pipelines for the Devtools AI sample applications. For more information about helm charts see the official [Helm Charts Documentation](https://helm.sh/).
 

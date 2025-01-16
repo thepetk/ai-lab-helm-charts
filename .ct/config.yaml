@@ -1,0 +1,5 @@
+chart-dirs:
+  - charts/ai-software-templates
+validate-maintainers: false
+remote: origin
+target-branch: main

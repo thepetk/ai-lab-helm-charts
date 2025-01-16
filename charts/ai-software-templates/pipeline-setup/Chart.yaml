@@ -5,4 +5,4 @@ annotations:
 description: A Helm chart for integrating the Git and Quay configuration for Pipelines in the user's application namespace.
 name: ops-ai-labs-setup
 tags: tekton,pipelines,operator,ai-lab
-version: 0.1.0
+version: 0.1.1

@@ -1,5 +1,9 @@
 
+
 # OpenShift Pipelines Application Namespace setup for Devtools AI Sample Applications.
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square)
+
+A Helm chart for integrating the Git and Quay configuration for Pipelines in the user's application namespace.
 
 This repo is a Helm chart that a user admin level privileges to his application namespace would run to set up OpenShift Pipelines for the Devtools AI sample applications. For more information about helm charts see the official [Helm Charts Documentation](https://helm.sh/).
 

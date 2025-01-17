@@ -1,7 +1,7 @@
-
 # OpenShift Pipelines Application Namespace setup for Devtools AI Sample Applications.
 
 This repo is a Helm chart that a user admin level privileges to his application namespace would run to set up OpenShift Pipelines for the Devtools AI sample applications. For more information about helm charts see the official [Helm Charts Documentation](https://helm.sh/).
+
 
 ## Requirements
 
@@ -10,7 +10,7 @@ This repo is a Helm chart that a user admin level privileges to his application 
 
 ## Background
 
-This chart assumes the [OpenShift Pipelines install chart](../pipeline-install/README.md) has been run, something equivalent to what it does, so
+This chart assumes the [OpenShift Pipelines install chart](../pipeline-install/README.md) has been run, something equivalent to what it does, so 
 that OpenShift Pipelines can run the Tekton Pipelines under the [rhdh-pipelines](https://github.com/redhat-ai-dev/rhdh-pipelines) repo, and that
 Pipelines As Code has sufficient credentials to process events from you GitHub Application.
 
@@ -29,22 +29,13 @@ To install the Pipelines Setup Helm chart using Helm directly, you can run:
 helm upgrade --install <release-name> --namespace <helm-release-and-chatbot-application-namespace> --create-namespace .
 ```
 
-The `.gitignore` file in this repository filters files named `private-values.yaml`.  Thus, you can maintain in
+The `.gitignore` file in this repository filters files named `private-values.yaml`.  Thus, you can maintain in 
 your local fork of this repository a value settings file outside of git management.  Copy `values.yaml` in this directory to `private-values.yaml` and make any necessary edits to `private-values.yaml`.  Then change your helm invocation to the following:
 
 ```shell
 helm upgrade --install <release-name> --namespace <helm-release-and-chatbot-application-namespace> --create-namespace -f ./private-values.yaml .
 ```
 
-Below is a table of each value used to configure this chart.
+Below is a table of each value used to configure this chart. 
 
-## Values
-
-| Key | Type | Default | Description |
-|-----|------|---------|-------------|
-| tekton.gitSecretKeyToken | string | `"password"` | [REQUIRED] The Github token value. |
-| tekton.gitSecretName | string | `"github-secrets"` | The name of the Secret's key with the Github token value. |
-| tekton.gitSecretToken | string | `"<your git token>"` | The name of the Secret containing the required Github token. |
-| tekton.quayConfigJSON | string | `"< your config.json file contents, ideally in compact, single line format>"` | [REQUIRED] The quay.io config.json used when the application image will be pushed. |
-| tekton.quaySecretName | string | `"ai-lab-image-registry-token"` | The name of the Secret containing the required Quay token. |
-
+{{ template "chart.valuesSection" . }}

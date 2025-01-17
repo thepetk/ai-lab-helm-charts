@@ -1,23 +1,28 @@
 {
-    "$schema": "http://json-schema.org/schema#",
-    "type": "object",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "properties": {
         "tekton": {
-            "type": "object",
             "properties": {
                 "gitAppId": {
-                    "type": "string",
-                    "description": "[REQUIRED] The GitHub Application ID"
-                },
-                "gitAppWebhookSecret": {
-                    "type": "string",
-                    "description": "[REQUIRED] The GitHub Application Webhook Secret"
+                    "description": "[REQUIRED] The GitHub Application ID",
+                    "type": "string"
                 },
                 "gitAppPrivateKey": {
-                    "type": "string",
-                    "description": "[REQUIRED] The GitHub Application Private Key"
+                    "description": "[REQUIRED] The GitHub Application Private Key",
+                    "type": "string"
+                },
+                "gitAppWebhookSecret": {
+                    "description": "[REQUIRED] The GitHub Application Webhook Secret",
+                    "type": "string"
                 }
-           }
+            },
+            "required": [
+                "gitAppId",
+                "gitAppWebhookSecret",
+                "gitAppPrivateKey"
+            ],
+            "type": "object"
         }
-    }
+    },
+    "type": "object"
 }

@@ -3,7 +3,7 @@ apiVersion: v2
 # The name of the chart (required)
 name: chatbot-ai-sample
 # A SemVer 2 version (required)
-version: 0.1.1
+version: 0.1.2
 # A SemVer range of compatible Kubernetes versions (optional)
 kubeVersion: ">= 1.27.0-0"
 # A single-sentence description of this project (optional)
@@ -14,7 +14,7 @@ type: application
 keywords:
   - chatbot
   - llama.cpp
-  - ai-lab 
+  - ai-lab
 # The URL of this projects home page (optional)
 home: https://github.com/redhat-ai-dev/ai-lab-helm-charts
 # A list of URLs to source code for this project (optional)
@@ -29,7 +29,7 @@ maintainers:
 # A URL to an SVG or PNG image to be used as an icon (optional)
 # icon: ""
 # The version of the app that this contains (optional). Needn't be SemVer. Quotes recommended.
-# appVersion: 
+# appVersion:
 # Whether this chart is deprecated (optional, boolean)
 deprecated: false
 # A list of annotations keyed by name (optional)

@@ -15,6 +15,10 @@ model:
   modelServiceContainer: "quay.io/ai-lab/llamacpp_python:latest"
   # -- The exposed port of the model service
   modelServicePort: 8001
+  vllmSelected: false
+  dbRequired: false
+  includeModelEndpointSecret: false
+  existingModelServer: false
 
 gitops:
   # -- The name of the Secret containing the required Github token

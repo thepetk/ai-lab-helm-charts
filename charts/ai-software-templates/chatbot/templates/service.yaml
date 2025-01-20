@@ -3,9 +3,8 @@ kind: Service
 metadata: 
   labels: 
     app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Release.Name }} 
   name: {{ .Release.Name }}
-  namespace: {{ .Release.Namespace }}
 spec:
   ports:
   - port: {{ .Values.application.appPort }}

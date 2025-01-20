@@ -15,10 +15,14 @@ model:
   modelServiceContainer: "quay.io/ai-lab/llamacpp_python:latest"
   # -- The exposed port of the model service
   modelServicePort: 8001
+  # -- The bool variable for support of vllms
   vllmSelected: false
+  # -- The bool variable for support of model database
   dbRequired: false
-  includeModelEndpointSecret: false
+  # -- The bool variable for support of existing model server
   existingModelServer: false
+  # -- The bool variable for support of bearer token authentication for existing model server authentication
+  includeModelEndpointSecret: false
 
 gitops:
   # -- The name of the Secret containing the required Github token

@@ -2,7 +2,6 @@ apiVersion: "pipelinesascode.tekton.dev/v1alpha1"
 kind: Repository
 metadata:
   name: {{ .Release.Name }}-tekton-repository
-  namespace: {{ .Release.Namespace }}
   labels: 
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/name:  {{ .Release.Name }}

@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/name:  {{ .Release.Name }}-app-config
     app.kubernetes.io/part-of: {{ .Release.Name }}
   name: {{ .Release.Name }}-app-config
+  namespace: {{ .Release.Namespace }}
 data:
   APP_NAME: "{{ .Release.Name }}"
   APP_NAMESPACE: "{{ .Release.Namespace }}"

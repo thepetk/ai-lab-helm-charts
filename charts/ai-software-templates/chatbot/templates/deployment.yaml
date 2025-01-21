@@ -11,6 +11,7 @@ metadata:
     app.kubernetes.io/name:  {{ .Release.Name }}
     app.kubernetes.io/part-of: {{ .Release.Name }}  
   name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:

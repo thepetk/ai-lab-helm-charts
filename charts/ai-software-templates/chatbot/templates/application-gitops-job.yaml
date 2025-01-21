@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/name:  {{ .Release.Name }}-github-repo-creator
     app.kubernetes.io/part-of: {{ .Release.Name }}
   name: {{ .Release.Name }}-github-repo-creator
+  namespace: {{ .Release.Namespace }}
 spec:
   template:
     spec:

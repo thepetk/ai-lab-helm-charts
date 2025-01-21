@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-model-config
+  namespace: {{ .Release.Namespace }}
 data:
   {{ if .Values.model.existingModelServer }}
   MODEL_ENDPOINT: "{{ .Values.model.modelEndpoint }}"

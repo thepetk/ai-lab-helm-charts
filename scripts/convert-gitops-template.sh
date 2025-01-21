@@ -13,7 +13,6 @@ replace() {
 convert() {
     input_file="$1"
 
-    remove_not_suppoted_blocks "$input_file"
     # One to one mappings for all application parameter values
     replace "values\.name" ".Release.Name" "$input_file"
     replace "values\.appContainer" ".Values.application.appContainer" "$input_file"
@@ -45,6 +44,17 @@ convert() {
 
     # Remove managed-by: kustomize
     sed -i '/managed-by: kustomize/d' "$input_file"
+
+    # Add explicit namespace mention
+    awk '
+    /name: {{ .Release.Name }}/ && !namespace_added {
+    print $0
+    print "  namespace: {{ .Release.Namespace }}"
+    namespace_added=1
+    next
+    }
+    { print }
+    ' "$input_file" > tmp && mv tmp "$input_file"
 
     # Update conditionals
     sed -E -i 's/\{\{\ if ([^ ]+) or ([^ ]+) \}\}/{{- if or \1 \2 }}/' "$input_file"

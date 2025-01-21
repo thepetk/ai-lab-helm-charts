@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 replace() {
     old="$1"
@@ -13,7 +13,7 @@ replace() {
 convert() {
     input_file="$1"
 
-    remove_not_suppoted_blocks $input_file
+    remove_not_suppoted_blocks "$input_file"
     # One to one mappings for all application parameter values
     replace "values\.name" ".Release.Name" "$input_file"
     replace "values\.appContainer" ".Values.application.appContainer" "$input_file"
@@ -56,14 +56,14 @@ convert_all() {
     root_dir="$2"
 
     echo "Root dir = $root_dir"
-    for file in $gitops_templates_dir/*.yaml; do
+    for file in "$gitops_templates_dir"/*.yaml; do
         if [[ -f $file ]]; then
             # Get the relative path to compare
             relFile=$(echo "$file" | sed "s|$root_dir/||")
             # Check if the fetched file is inside the list of included files for the given env
             if [[ $INCLUDE_FILES == *$relFile* ]]; then
-                convert $file
-                cp $file $CHART_PATH/templates
+                convert "$file"
+                cp "$file" "$CHART_PATH"/templates
             else
                 echo "Skip $file"
             fi
@@ -72,34 +72,32 @@ convert_all() {
 }
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" 
-ROOT_DIR=$(realpath $SCRIPT_DIR/..)
+ROOT_DIR=$(realpath "$SCRIPT_DIR"/..)
 
 # Fetch the contents of the gitops repo
 REPO="${SAMPLE_REPO:-https://github.com/redhat-ai-dev/ai-lab-app}"
 BRANCH="${SAMPLE_BRANCH:-main}"
-DIRNAME=$(basename $REPO)
 
 # Create the temp dir to store the gitops repo contents
 TEMP_DIR=$SCRIPT_DIR/tmp
-mkdir -p $TEMP_DIR
+mkdir -p "$TEMP_DIR"
 
 # Define gitops, templates and env dirs
-TEMPLATE_DIR=${ROOT_DIR}/templates
 GITOPS_TEMPLATES_DIR=$TEMP_DIR/templates/http/base
 ENVS_DIR=$SCRIPT_DIR/envs
 
 # Clone the gitops repo and move the content
-git clone $REPO 2>&1 > /dev/null $TEMP_DIR
+git clone -b "$BRANCH" "$REPO" "$TEMP_DIR" > /dev/null 2>&1 
 
-for env in $ENVS_DIR/*; do
+for env in "$ENVS_DIR"/*; do
     echo "Sourcing env $env"
     if [[ "$env" == *"_base"* ]]; then
         # skipping execution for the base env
         continue
     fi
-    source $env
-    convert_all $GITOPS_TEMPLATES_DIR $ROOT_DIR
+    source "$env"
+    convert_all "$GITOPS_TEMPLATES_DIR" "$ROOT_DIR"
 done
 
 # Remove the cloned repo
-rm -rf $TEMP_DIR
+rm -rf "$TEMP_DIR"

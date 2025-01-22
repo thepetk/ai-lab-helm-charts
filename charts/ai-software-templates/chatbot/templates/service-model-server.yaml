@@ -4,8 +4,8 @@ metadata:
   labels: 
     app.kubernetes.io/instance: {{ .Release.Name }}-model-server
     app.kubernetes.io/name: {{ .Release.Name }}-model-server
-  name: {{ .Release.Name }}-model-server
   namespace: {{ .Release.Namespace }}
+  name: {{ .Release.Name }}-model-server
 spec:
   ports:
   - port: {{ .Values.model.modelServicePort }}

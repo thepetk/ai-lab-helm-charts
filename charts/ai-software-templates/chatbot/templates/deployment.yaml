@@ -28,6 +28,18 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}-model-config
+        {{ if .Values.model.dbRequired }}
+        - configMapRef:
+            name: {{ .Release.Name }}-database-config
+        {{ end }}
+        {{ if .Values.model.includeModelEndpointSecret }}
+        env:
+        - name: MODEL_ENDPOINT_BEARER
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.model.modelEndpointSecretName }}
+              key: {{ .Values.model.modelEndpointSecretKey }}
+        {{ end }}
         ports:
         - containerPort: {{ .Values.application.appPort }}
         securityContext:

@@ -1,0 +1,20 @@
+# Chatbot AI Sample Env Configuration Variables.
+# The env configuration variables are used in order to convert the manifests
+# of redhat-ai-dev/ai-lab-app into resources of ai-lab-helm-charts
+
+# Application Container Image (String)
+export VALUES_APPLICATION_APP_CONATINER="quay.io/redhat-ai-dev/chatbot:latest"
+
+# Chart path inside the ai-lab-helm-charts project
+export CHART_PATH="charts/ai-software-templates/chatbot"
+
+# The list of files we are importing directly from the ai-lab-app
+export INCLUDE_FILES='
+scripts/tmp/templates/http/base/deployment.yaml
+scripts/tmp/templates/http/base/deployment-model-server.yaml
+scripts/tmp/templates/http/base/service.yaml
+scripts/tmp/templates/http/base/service-model-server.yaml
+scripts/tmp/templates/http/base/route.yaml
+scripts/tmp/templates/http/base/model-config.yaml
+scripts/tmp/templates/http/base/pvc.yaml
+'

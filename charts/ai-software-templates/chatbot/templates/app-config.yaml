@@ -9,10 +9,12 @@ metadata:
     app.kubernetes.io/name:  {{ .Release.Name }}-app-config
     app.kubernetes.io/part-of: {{ .Release.Name }}
   name: {{ .Release.Name }}-app-config
-  namespace: {{ .Release.Namespace }}  
+  namespace: {{ .Release.Namespace }}
 data:
   APP_NAME: "{{ .Release.Name }}"
   APP_NAMESPACE: "{{ .Release.Namespace }}"
+  APP_DIR_NAME: "chatbot"
+  APP_EXEC_NAME: "chatbot_ui.py"
   GITHUB_ORG_NAME: "{{ .Values.gitops.githubOrgName }}"  
   GITHUB_SOURCE_REPO: "{{ .Values.gitops.gitSourceRepo }}"
   GITHUB_TETKON_SOURCE_REPO: "redhat-ai-dev/ai-lab-helm-charts"

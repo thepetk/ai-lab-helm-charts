@@ -8,8 +8,8 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}-github-repo-creator
     app.kubernetes.io/name:  {{ .Release.Name }}-github-repo-creator
     app.kubernetes.io/part-of: {{ .Release.Name }}
-  namespace: {{ .Release.Namespace }} 
   name: {{ .Release.Name }}-github-repo-creator
+  namespace: {{ .Release.Namespace }}
 spec:
   template:
     spec:
@@ -36,7 +36,7 @@ spec:
                  sed -i 's@'"$TEKTON_FILE_QUAY_ACCOUNT_REPLACEMENT"'@'"$QUAY_ACCOUNT_NAME"'@g' docker-push.yaml
                  cd - || exit
 
-                 cd app-source/chatbot || exit
+                 cd app-source/$APP_DIR_NAME || exit
                  cp * ../../"$APP_NAME"
                  cd ../../tekton-source/pac/pipelineRuns/.tekton || exit
                  cp docker-push.yaml ../../../../"$APP_NAME"/.tekton
@@ -48,7 +48,7 @@ spec:
               tar xzf gh_"$GH_VERSION"_linux_amd64.tar.gz
               GH_PATH=$(pwd)/gh_"$GH_VERSION"_linux_amd64/bin
               export PATH="$GH_PATH":"$PATH"
-              export SOURCE_REPO_APP_CONTENT_PATH="chatbot"
+              export SOURCE_REPO_APP_CONTENT_PATH="$APP_DIR_NAME"
               export SOURCE_TEKTON_REPO_CONTENT_PATH="pac/pipelineRuns"
               export TEKTON_FILE_APP_NAME_REPLACEMENT="application_name_replace"
               export TEKTON_FILE_APP_NAMESPACE_REPLACEMENT="application_namespace_replace"
@@ -80,7 +80,7 @@ spec:
                 gh repo clone "$GH_REPO" existing -- --no-tags --branch="$GITHUB_DEFAULT_BRANCH" --single-branch || exit
 
                 FILES=("Containerfile"
-                "chatbot_ui.py"
+                "$APP_EXEC_NAME"
                 "requirements.txt"
                 ".tekton/docker-push.yaml")
 

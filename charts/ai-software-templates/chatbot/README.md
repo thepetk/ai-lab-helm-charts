@@ -1,7 +1,7 @@
 
 
 # Chatbot AI Sample Helm Chart
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 This Helm Chart deploys a Large Language Model (LLM)-enabled [chat bot application](https://github.com/redhat-ai-dev/ai-lab-samples/tree/main/chatbot).
 
@@ -76,10 +76,14 @@ Kubernetes: `>= 1.27.0-0`
 | gitops.gitSourceRepo | string | `"redhat-ai-dev/ai-lab-samples"` | The Github Repository with the contents of the ai-lab sample chatbot application |
 | gitops.githubOrgName | string | `""` | [REQUIRED] The Github Organization name that the chatbot application repository will be created in |
 | gitops.quayAccountName | string | `""` | [REQUIRED] The quay.io account that the application image will be pushed |
+| model.dbRequired | bool | `false` | The bool variable for support of model database |
+| model.existingModelServer | bool | `false` | The bool variable for support of existing model server |
+| model.includeModelEndpointSecret | bool | `false` | The bool variable for support of bearer token authentication for existing model server authentication |
 | model.initContainer | string | `"quay.io/redhat-ai-dev/granite-7b-lab:latest"` | The image used for the initContainer of the model service deployment |
 | model.modelInitCommand | string | `"['/usr/bin/install', '/model/model.file', '/shared/']"` | The model service initContainer command |
 | model.modelPath | string | `"/model/model.file"` | The path of the model file inside the model service container |
 | model.modelServiceContainer | string | `"quay.io/ai-lab/llamacpp_python:latest"` | The image used for the model service |
 | model.modelServicePort | int | `8001` | The exposed port of the model service |
+| model.vllmSelected | bool | `false` | The bool variable for support of vllms |
 
 **NOTE:** Your helm release's name will be used as the name of the application github repository

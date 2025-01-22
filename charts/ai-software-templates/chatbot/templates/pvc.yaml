@@ -5,8 +5,8 @@ metadata:
   labels: 
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/name: {{ .Release.Name }} 
-  name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
+  name: {{ .Release.Name }}
 spec:
   accessModes:
     - ReadWriteOnce

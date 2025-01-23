@@ -26,7 +26,7 @@ For OpenShift Pipelines configuration the two Helm charts provided are:
   - The Pipelines As Code PipelinesRuns in your Namespace have the requisite credentials to push your application's image to your Quay repository.
   - The [Gitops component](#gitops) has the requisite credentials to interact with the GitHub repository for your application.
 
-The ai-lab helm charts mainly use the tekton pipelines under [rhdh-pipelines](https://github.com/redhat-ai-dev/rhdh-pipelines) repo. The only customized resource used for the helm chart case is:
+The ai-lab helm charts exclusively uses tekton pipelines and tasks under [rhdh-pipelines](https://github.com/redhat-ai-dev/rhdh-pipelines) repo. The only customized resource used for the helm chart case is:
 
 - The [.tekton/docker-push.yaml](/pac/pipelineRuns/.tekton/docker-push.yaml) PipelineRun used to manage `push` events received from the github app webhook.
 

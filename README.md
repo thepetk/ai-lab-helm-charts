@@ -9,7 +9,7 @@ The gitops component, handled by ArgoCD for the RHDH case, is replaced by a Kube
 - Creates the GitHub repository for the application.
 - Copies the application source code into the new repository.
 - Copies the Tekton Pipelines As Code PipelineRun/Pipeline/Task that build new images for the application as pull requests
-  are merged and updates the Deployment of the application with the new version of the image.
+  are merged and updates the Deployment of the application with the new version of the image by the PipelienRun directly patching the Deployment via `oc`, vs. ArgoCD using gitops to patch the Deployment.
 - Commits these changes and pushes the commit to the preferred branch of the new repository.
 
 The source code is [here](charts/ai-software-templates/chatbot/templates/application-gitops-job.yaml).

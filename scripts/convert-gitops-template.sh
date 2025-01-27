@@ -47,7 +47,7 @@ convert() {
 
     # Add explicit namespace mention
     awk '
-    /name: {{ .Release.Name }}/ && !namespace_added {
+    /  name: {{ .Release.Name }}/ && !namespace_added {
     print $0
     print "  namespace: {{ .Release.Namespace }}"
     namespace_added=1
@@ -59,6 +59,10 @@ convert() {
     # Update conditionals
     sed -E -i 's/\{\{\ if ([^ ]+) or ([^ ]+) \}\}/{{- if or \1 \2 }}/' "$input_file"
     sed -E -i 's/\{\{\ if ([^ ]+) == nil or not\(([^ ]+)\) \}\}/{{- if or (not \1) (eq \2 nil) }}/' "$input_file"
+
+    # remove blocks related to RAG database - should be supported only for the rag case
+    sed -i '/{{ if \.Values\.model\.dbRequired }}/,/{{ end }}/d' "$input_file"
+
 }
 
 convert_all() {

@@ -29,7 +29,7 @@ model:
   includeModelEndpointSecret: false
   # -- The name of the secret storing the credentials for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true.
   modelEndpointSecretName: ""
-  # -- The name of the secret storing the credentials for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true.
+  # -- The name of the secret field storing the bearer value for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true.
   modelEndpointSecretKey: 
 
 gitops:

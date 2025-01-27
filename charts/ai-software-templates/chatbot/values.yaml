@@ -15,14 +15,16 @@ model:
   modelServiceContainer: "quay.io/ai-lab/llamacpp_python:latest"
   # -- The exposed port of the model service
   modelServicePort: 8001
-  # -- The bool variable for support of vllms
+  # -- The bool variable for support of vllm instead of llama_cpp. Be sure that your system has GPU support for this case.
   vllmSelected: false
   # -- The image used for the model service for the VLLM use case.
   vllmModelServiceContainer: ""
+  # -- The name of the model. By defaults it is set to instructlab/granite-7b-lab. It is used only for vllm and/or existing model service cases.
+  modelName: ""
+  # -- The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.
+  maxModelLength: 4096
   # -- The bool variable for support of existing model server
   existingModelServer: false
-  # -- The name of the model for the existing model service case. Is used only if existingModelServer is set to true.
-  modelName: ""
   # -- The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true.
   modelEndpoint: ""
   # -- The bool variable for support of bearer token authentication for existing model server authentication
@@ -36,7 +38,7 @@ gitops:
   # -- The name of the Secret containing the required Github token
   gitSecretName: "github-secrets"
   # -- The name of the Secret's key with the Github token value
-  gitSecretKeyToken: "GITHUB_TOKEN"
+  gitSecretKeyToken: "password"
   # -- The Github Repository with the contents of the ai-lab sample chatbot application
   gitSourceRepo: "redhat-ai-dev/ai-lab-samples"
   # -- The default branch for the chatbot application Github repository

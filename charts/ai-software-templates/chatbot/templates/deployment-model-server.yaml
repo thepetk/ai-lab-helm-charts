@@ -1,3 +1,4 @@
+{{ if not .Values.model.existingModelServer }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -76,3 +77,4 @@ spec:
         - name: model-file
           emptyDir: {}
       {{ end }}
+{{ end }}

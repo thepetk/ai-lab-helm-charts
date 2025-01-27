@@ -64,6 +64,11 @@ convert() {
     # remove blocks related to RAG database - should be supported only for the rag case
     sed -i '/{{ if \.Values\.model\.dbRequired }}/,/{{ end }}/d' "$input_file"
 
+    # add conditional for existing model server for the model-server resources.
+    if [[ $input_file == *"model-server"* ]]; then
+        sed -i '1i {{ if not .Values.model.existingModelServer }}' "$input_file"
+        sed -i '$a {{ end }}' "$input_file"
+    fi
 }
 
 convert_all() {

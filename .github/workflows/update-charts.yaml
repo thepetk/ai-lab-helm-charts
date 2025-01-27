@@ -1,4 +1,4 @@
-name: CI
+name: Verify updated gitops resources
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  verify-dependencies:
+  verify-updated-gitops-resources:
     runs-on: ubuntu-latest
 
     steps:

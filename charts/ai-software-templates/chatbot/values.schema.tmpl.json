@@ -68,7 +68,7 @@
                     "title": "Secret Key Token",
                     "type": "string",
                     "description": "The name of the Secret's key with the Github token value.",
-                    "default": "GITHUB_TOKEN"
+                    "default": "password"
                 },
                 "githubOrgName": {
                     "title": "GitHub Org Name",

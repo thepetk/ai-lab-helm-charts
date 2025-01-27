@@ -1,87 +1,78 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels: 
+  labels:
     app.kubernetes.io/instance: {{ .Release.Name }}-model-server
-    app.kubernetes.io/name:  {{ .Release.Name }}-model-server
-    app.kubernetes.io/part-of: {{ .Release.Name }}  
+    app.kubernetes.io/name: {{ .Release.Name }}-model-server
+    app.kubernetes.io/part-of: {{ .Release.Name }}
   name: {{ .Release.Name }}-model-server
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance:  {{ .Release.Name }}-model-server 
+      app.kubernetes.io/instance: {{ .Release.Name }}-model-server
   template:
-    metadata: 
+    metadata:
       labels:
-        app.kubernetes.io/instance:  {{ .Release.Name }}-model-server
+        app.kubernetes.io/instance: {{ .Release.Name }}-model-server
     spec:
       {{- if or (not .Values.model.vllmSelected) (eq .Values.model.vllmSelected nil) }}
       initContainers:
-      - name: model-file
-        image: {{ .Values.model.initContainer }}
-        command: {{ .Values.model.modelInitCommand }}
-        volumeMounts:
         - name: model-file
-          mountPath: /shared
+          image: {{ .Values.model.initContainer }}
+          command: {{ .Values.model.modelInitCommand }}
+          volumeMounts:
+            - name: model-file
+              mountPath: /shared
       {{ end }}
       containers:
-      {{ if .Values.model.vllmSelected }}
-      - image: {{ .Values.model.vllmModelServiceContainer }}
-        args: [
-            "--model",
-            "{{ .Values.model.modelName }}",
-            "--port",
-            "{{ .Values.model.modelServicePort }}",
-            "--download-dir",
-            "/models-cache",
-            "--max-model-len",
-            "{{values.maxModelLength}}"]
-        resources:
-          limits:
-            nvidia.com/gpu: '1'
-        volumeMounts:
-        - name: dshm
-          mountPath: /dev/shm
-        - name: models-cache
-          mountPath: /models-cache
-      {{ else }}
-      - env:
-        - name: HOST
-          value: "0.0.0.0"
-        - name: PORT
-          value: "{{ .Values.model.modelServicePort }}"
-        - name: MODEL_PATH
-          value: {{ .Values.model.modelPath }}
-        - name: CHAT_FORMAT
-          value: openchat
-        image: {{ .Values.model.modelServiceContainer }}
-        volumeMounts:
-        - name: model-file
-          mountPath: /model
-      {{ end }}
-        name: app-model-service
-        ports:
-        - containerPort: {{ .Values.model.modelServicePort }}
-        securityContext:
-          runAsNonRoot: true
+        {{ if .Values.model.vllmSelected }}
+        - image: {{ .Values.model.vllmModelServiceContainer }}
+          args: ["--model", "{{ .Values.model.modelName }}", "--port", "{{ .Values.model.modelServicePort }}", "--download-dir", "/models-cache", "--max-model-len", "{{values.maxModelLength}}"]
+          resources:
+            limits:
+              nvidia.com/gpu: '1'
+          volumeMounts:
+            - name: dshm
+              mountPath: /dev/shm
+            - name: models-cache
+              mountPath: /models-cache
+        {{ else }}
+        - env:
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "{{ .Values.model.modelServicePort }}"
+            - name: MODEL_PATH
+              value: {{ .Values.model.modelPath }}
+            - name: CHAT_FORMAT
+              value: openchat
+          image: {{ .Values.model.modelServiceContainer }}
+          volumeMounts:
+            - name: model-file
+              mountPath: /model
+              {{ end }}
+          name: app-model-service
+          ports:
+            - containerPort: {{ .Values.model.modelServicePort }}
+          securityContext:
+            runAsNonRoot: true
       {{ if .Values.model.vllmSelected }}
       volumes:
-      - name: dshm
-        emptyDir:
-          medium: Memory
-          sizeLimit: "2Gi"
-      - name: models-cache
-        persistentVolumeClaim:
-          claimName: {{ .Release.Name }}
-
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: "2Gi"
+        - name: models-cache
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}
       tolerations:
         - key: nvidia.com/gpu
           operator: Exists
           effect: NoSchedule
       {{ else }}
       volumes:
-      - name: model-file
-        emptyDir: {}
+        - name: model-file
+          emptyDir: {}
       {{ end }}

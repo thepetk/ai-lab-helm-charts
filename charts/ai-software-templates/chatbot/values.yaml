@@ -18,7 +18,7 @@ model:
   # -- The bool variable for support of vllms
   vllmSelected: false
   # -- The image used for the model service for the VLLM use case.
-  vllmModelServiceContainer: "quay.io/rh-aiservices-bu/vllm-openai-ubi9:0.4.2"
+  vllmModelServiceContainer: ""
   # -- The bool variable for support of existing model server
   existingModelServer: false
   # -- The name of the model for the existing model service case. Is used only if existingModelServer is set to true.
@@ -30,7 +30,7 @@ model:
   # -- The name of the secret storing the credentials for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true.
   modelEndpointSecretName: ""
   # -- The name of the secret field storing the bearer value for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true.
-  modelEndpointSecretKey: 
+  modelEndpointSecretKey: ""
 
 gitops:
   # -- The name of the Secret containing the required Github token

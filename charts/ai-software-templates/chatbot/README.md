@@ -80,14 +80,14 @@ Kubernetes: `>= 1.27.0-0`
 | model.includeModelEndpointSecret | bool | `false` | The bool variable for support of bearer token authentication for existing model server authentication |
 | model.initContainer | string | `"quay.io/redhat-ai-dev/granite-7b-lab:latest"` | The image used for the initContainer of the model service deployment |
 | model.modelEndpoint | string | `""` | The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true. |
-| model.modelEndpointSecretKey | string | `nil` | The name of the secret field storing the bearer value for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true. |
+| model.modelEndpointSecretKey | string | `""` | The name of the secret field storing the bearer value for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true. |
 | model.modelEndpointSecretName | string | `""` | The name of the secret storing the credentials for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true. |
 | model.modelInitCommand | string | `"['/usr/bin/install', '/model/model.file', '/shared/']"` | The model service initContainer command |
 | model.modelName | string | `""` | The name of the model for the existing model service case. Is used only if existingModelServer is set to true. |
 | model.modelPath | string | `"/model/model.file"` | The path of the model file inside the model service container |
 | model.modelServiceContainer | string | `"quay.io/ai-lab/llamacpp_python:latest"` | The image used for the model service. For the VLLM case please see vllmModelServiceContainer |
 | model.modelServicePort | int | `8001` | The exposed port of the model service |
-| model.vllmModelServiceContainer | string | `"quay.io/rh-aiservices-bu/vllm-openai-ubi9:0.4.2"` | The image used for the model service for the VLLM use case. |
+| model.vllmModelServiceContainer | string | `""` | The image used for the model service for the VLLM use case. |
 | model.vllmSelected | bool | `false` | The bool variable for support of vllms |
 
 **NOTE:** Your helm release's name will be used as the name of the application github repository

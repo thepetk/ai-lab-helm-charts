@@ -33,6 +33,7 @@ convert() {
     replace "values\.modelEndpointSecretKey" ".Values.model.modelEndpointSecretKey" "$input_file"
     replace "values\.existingModelServer" ".Values.model.existingModelServer" "$input_file"
     replace "values\.dbRequired" ".Values.model.dbRequired" "$input_file"
+    replace "values\.maxModelLength" ".Values.model.maxModelLength" "$input_file"
 
     # Update if conditions
     sed -i 's/{%- if/{{ if/g' "$input_file"

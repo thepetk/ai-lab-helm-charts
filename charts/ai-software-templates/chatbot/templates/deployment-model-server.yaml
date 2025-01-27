@@ -29,7 +29,7 @@ spec:
       containers:
         {{ if .Values.model.vllmSelected }}
         - image: {{ .Values.model.vllmModelServiceContainer }}
-          args: ["--model", "{{ .Values.model.modelName }}", "--port", "{{ .Values.model.modelServicePort }}", "--download-dir", "/models-cache", "--max-model-len", "{{values.maxModelLength}}"]
+          args: ["--model", "{{ .Values.model.modelName }}", "--port", "{{ .Values.model.modelServicePort }}", "--download-dir", "/models-cache", "--max-model-len", "{{ .Values.model.maxModelLength }}"]
           resources:
             limits:
               nvidia.com/gpu: '1'

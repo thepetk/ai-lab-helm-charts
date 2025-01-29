@@ -10,9 +10,9 @@ This Helm Chart deploys a Large Language Model (LLM)-enabled [chat bot applicati
 This Helm Chart creates the following components:
 
 ### The Model Service
-By default the `chatbot-ai-sample` supports the `llama.cpp` inference server and related to the [ai-lab-recipes model server](https://github.com/containers/ai-lab-recipes/tree/main/model_servers/llamacpp_python).
+By default the `chatbot-ai-sample` uses the `llama.cpp` inference via the [ai-lab-recipes model server](https://github.com/containers/ai-lab-recipes/tree/main/model_servers/llamacpp_python).
 
-However, the usage of `vLLM` model services or existing model services is also supported:
+However, the use of `vLLM` to deploy model services, as well as the use of existing model services is also supported:
 * For the `vLLM` model service case, the `Values.model.vllmSelected` value should be `true`, the `Values.model.vllmModelServiceContainer` and the `Values.model.modelName` should be configured too.
 * For the existing model service case, the `Values.model.existingModelServer` value should be `true` and the `Values.model.modelEndpoint` should be set to the URL of the existing model endpoint we would like to use for this deployment.
 * In case the existing model service requires bearer authentication the `Values.model.includeModelEndpointSecret` should be set to `true`, the `Values.model.modelEndpointSecretName` and the `Values.model.modelEndpointSecretKey` should be configured.

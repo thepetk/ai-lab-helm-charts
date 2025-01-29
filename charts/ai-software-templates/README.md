@@ -1,6 +1,6 @@
 ## ai-software-templates
 
-Apart from the [pipeline-install](./pipeline-install/) and the [pipeline-setup](./pipeline-setup/) which are tools to help you install the tekton pipelines along with your charts, the rest of charts under this directory are based on the [redhat-ai-dev/ai-lab-app](https://github.com/redhat-ai-dev/ai-lab-app) gitops resources repo.
+Apart from the [pipeline-install](./pipeline-install/) and the [pipeline-setup](./pipeline-setup/) which are tools to help you install the Tekton Pipelines along with your charts, the rest of charts under this directory are based on the [redhat-ai-dev/ai-lab-app](https://github.com/redhat-ai-dev/ai-lab-app) gitops resources repo.
 
 ### Pull automatically latest changes
 

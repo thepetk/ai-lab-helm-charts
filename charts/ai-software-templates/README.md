@@ -4,6 +4,6 @@ Apart from the [pipeline-install](./pipeline-install/) and the [pipeline-setup](
 
 ### Pull automatically latest changes
 
-To pull all latest changes for the charts based on `ai-lab-app` you can simply run the `generate.sh` script placed in the root dir of this repository.
+To pull all the latest changes for the charts from the `ai-lab-app` repository you can simply run the `generate.sh` script placed in the root dir of this repository.
 
 The script will clone the `ai-lab-app` and will convert the necessary resources to helm chart template files. Each chart has a corresponding `env` file under `scripts/envs` dir which helps us configure the behavior of the conversion process.

@@ -1,46 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:  
+  annotations:
     tad.gitops.set/image: ".spec.template.spec.containers[0].image"
     tad.gitops.get/image: ".spec.template.spec.containers[0].image"
     tad.gitops.set/replicas: ".spec.replicas"
-    tad.gitops.get/replicas: ".spec.replicas" 
-  labels: 
+    tad.gitops.get/replicas: ".spec.replicas"
+  labels:
     app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/name:  {{ .Release.Name }}
-    app.kubernetes.io/part-of: {{ .Release.Name }}  
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/part-of: {{ .Release.Name }}
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance:  {{ .Release.Name }} 
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
-    metadata: 
+    metadata:
       labels:
-        app.kubernetes.io/instance:  {{ .Release.Name }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-      - image:  {{ .Values.application.appContainer }}
-        name: app-inference
-        envFrom:
-        - configMapRef:
-            name: {{ .Release.Name }}-model-config
-        {{ if .Values.model.dbRequired }}
-        - configMapRef:
-            name: {{ .Release.Name }}-database-config
-        {{ end }}
-        {{ if .Values.model.includeModelEndpointSecret }}
-        env:
-        - name: MODEL_ENDPOINT_BEARER
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.model.modelEndpointSecretName }}
-              key: {{ .Values.model.modelEndpointSecretKey }}
-        {{ end }}
-        ports:
-        - containerPort: {{ .Values.application.appPort }}
-        securityContext:
-          runAsNonRoot: true
+        - image: {{ .Values.application.appContainer }}
+          name: app-inference
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-model-config
+          {{ if .Values.model.includeModelEndpointSecret }}
+          env:
+            - name: MODEL_ENDPOINT_BEARER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.model.modelEndpointSecretName }}
+                  key: {{ .Values.model.modelEndpointSecretKey }}
+          {{ end }}
+          ports:
+            - containerPort: {{ .Values.application.appPort }}
+          securityContext:
+            runAsNonRoot: true

@@ -27,7 +27,7 @@
                     "type": "string"
                 },
                 "gitSecretKeyToken": {
-                    "default": "GITHUB_TOKEN",
+                    "default": "password",
                     "description": "The name of the Secret's key with the Github token value.",
                     "title": "Secret Key Token",
                     "type": "string"

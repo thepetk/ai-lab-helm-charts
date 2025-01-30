@@ -1,7 +1,7 @@
 
 
 # Chatbot AI Sample Helm Chart
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 This Helm Chart deploys a Large Language Model (LLM)-enabled [chat bot application](https://github.com/redhat-ai-dev/ai-lab-samples/tree/main/chatbot).
 
@@ -10,7 +10,12 @@ This Helm Chart deploys a Large Language Model (LLM)-enabled [chat bot applicati
 This Helm Chart creates the following components:
 
 ### The Model Service
-Based on the `llama.cpp` inference server and related to the [ai-lab-recipes model server](https://github.com/containers/ai-lab-recipes/tree/main/model_servers/llamacpp_python).
+By default the `chatbot-ai-sample` uses the `llama.cpp` inference via the [ai-lab-recipes model server](https://github.com/containers/ai-lab-recipes/tree/main/model_servers/llamacpp_python).
+
+However, the use of `vLLM` to deploy model services, as well as the use of existing model services is also supported:
+* For the `vLLM` model service case, the `Values.model.vllmSelected` value should be `true`, the `Values.model.vllmModelServiceContainer` and the `Values.model.modelName` should be configured too.
+* For the existing model service case, the `Values.model.existingModelServer` value should be `true` and the `Values.model.modelEndpoint` should be set to the URL of the existing model endpoint we would like to use for this deployment.
+* In case the existing model service requires bearer authentication the `Values.model.includeModelEndpointSecret` should be set to `true`, the `Values.model.modelEndpointSecretName` and the `Values.model.modelEndpointSecretKey` should be configured.
 
 ### The Application
 A [Streamlit](https://github.com/streamlit/streamlit) application to interact with the model service which is based on the related [Chatbot Template](https://github.com/redhat-ai-dev/ai-lab-template/tree/main/templates/chatbot/content).
@@ -71,19 +76,24 @@ Kubernetes: `>= 1.27.0-0`
 | application.appContainer | string | `"quay.io/redhat-ai-dev/chatbot:latest"` | The image used for the initial chatbot application interface |
 | application.appPort | int | `8501` | The exposed port of the application |
 | gitops.gitDefaultBranch | string | `"main"` | The default branch for the chatbot application Github repository |
-| gitops.gitSecretKeyToken | string | `"GITHUB_TOKEN"` | The name of the Secret's key with the Github token value |
+| gitops.gitSecretKeyToken | string | `"password"` | The name of the Secret's key with the Github token value |
 | gitops.gitSecretName | string | `"github-secrets"` | The name of the Secret containing the required Github token |
 | gitops.gitSourceRepo | string | `"redhat-ai-dev/ai-lab-samples"` | The Github Repository with the contents of the ai-lab sample chatbot application |
 | gitops.githubOrgName | string | `""` | [REQUIRED] The Github Organization name that the chatbot application repository will be created in |
 | gitops.quayAccountName | string | `""` | [REQUIRED] The quay.io account that the application image will be pushed |
-| model.dbRequired | bool | `false` | The bool variable for support of model database |
 | model.existingModelServer | bool | `false` | The bool variable for support of existing model server |
 | model.includeModelEndpointSecret | bool | `false` | The bool variable for support of bearer token authentication for existing model server authentication |
 | model.initContainer | string | `"quay.io/redhat-ai-dev/granite-7b-lab:latest"` | The image used for the initContainer of the model service deployment |
+| model.maxModelLength | int | `4096` | The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096. |
+| model.modelEndpoint | string | `""` | The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true. |
+| model.modelEndpointSecretKey | string | `""` | The name of the secret field storing the bearer value for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true. |
+| model.modelEndpointSecretName | string | `""` | The name of the secret storing the credentials for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true. |
 | model.modelInitCommand | string | `"['/usr/bin/install', '/model/model.file', '/shared/']"` | The model service initContainer command |
+| model.modelName | string | `""` | The name of the model. By defaults it is set to instructlab/granite-7b-lab. It is used only for vllm and/or existing model service cases. |
 | model.modelPath | string | `"/model/model.file"` | The path of the model file inside the model service container |
-| model.modelServiceContainer | string | `"quay.io/ai-lab/llamacpp_python:latest"` | The image used for the model service |
+| model.modelServiceContainer | string | `"quay.io/ai-lab/llamacpp_python:latest"` | The image used for the model service. For the VLLM case please see vllmModelServiceContainer |
 | model.modelServicePort | int | `8001` | The exposed port of the model service |
-| model.vllmSelected | bool | `false` | The bool variable for support of vllms |
+| model.vllmModelServiceContainer | string | `""` | The image used for the model service for the VLLM use case. |
+| model.vllmSelected | bool | `false` | The bool variable for support of vllm instead of llama_cpp. Be sure that your system has GPU support for this case. |
 
 **NOTE:** Your helm release's name will be used as the name of the application github repository

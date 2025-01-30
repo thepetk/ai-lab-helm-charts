@@ -95,7 +95,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 ROOT_DIR=$(realpath "$SCRIPT_DIR"/..)
 
 # Fetch the contents of the gitops repo
-REPO="${SAMPLE_REPO:-https://github.com/redhat-ai-dev/ai-lab-app}"
+REPO="${SAMPLE_REPO:-https://github.com/thepetk/ai-lab-app}"
 BRANCH="${SAMPLE_BRANCH:-main}"
 
 # Create the temp dir to store the gitops repo contents

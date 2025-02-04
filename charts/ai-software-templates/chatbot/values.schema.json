@@ -63,16 +63,54 @@
         },
         "model": {
             "properties": {
+                "existingModelServer": {
+                    "default": false,
+                    "description": "Adds support of existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.",
+                    "title": "Use Existing Model Server",
+                    "type": "bool"
+                },
+                "includeModelEndpointSecret": {
+                    "default": false,
+                    "description": "Adds support for bearer authentication for the existing model server endpoint.",
+                    "title": "Existing Model Bearer Authentication Support",
+                    "type": "bool"
+                },
                 "initContainer": {
                     "default": "quay.io/redhat-ai-dev/granite-7b-lab:latest",
                     "description": "The image used for the initContainer of the model service deployment.",
                     "title": "Init Container",
                     "type": "string"
                 },
+                "maxModelLength": {
+                    "default": 4096,
+                    "description": "The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.",
+                    "title": "Model Max Length",
+                    "type": "string"
+                },
+                "modelEndpoint": {
+                    "description": "The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true.",
+                    "title": "Existing Model Endpoint URL",
+                    "type": "string"
+                },
+                "modelEndpointSecretKey": {
+                    "description": "The name of the secret field storing the bearer value for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true.",
+                    "title": "Existing Model Endpoint Secret Key",
+                    "type": "string"
+                },
+                "modelEndpointSecretName": {
+                    "description": "The name of the secret storing the credentials for the existing model service for bearer authentication. Is used only if includeModelEndpointSecret is set to true.",
+                    "title": "Existing Model Endpoint Secret Name",
+                    "type": "string"
+                },
                 "modelInitCommand": {
                     "default": "['/usr/bin/install', '/model/model.file', '/shared/']",
                     "description": "The model service initContainer command.",
                     "title": "Init Command",
+                    "type": "string"
+                },
+                "modelName": {
+                    "description": "The name of the model. It is used only in the vLLM use case.",
+                    "title": "Model Name",
                     "type": "string"
                 },
                 "modelPath": {
@@ -92,6 +130,17 @@
                     "description": "The exposed port of the model service.",
                     "title": "Service Port",
                     "type": "integer"
+                },
+                "vllmModelServiceContainer": {
+                    "description": "The image used for the model service for the vLLM use case.",
+                    "title": "vLLM Image",
+                    "type": "string"
+                },
+                "vllmSelected": {
+                    "default": false,
+                    "description": "Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case.",
+                    "title": "Use vLLM",
+                    "type": "bool"
                 }
             },
             "type": "object"

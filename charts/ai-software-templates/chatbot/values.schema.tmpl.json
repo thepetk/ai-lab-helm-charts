@@ -55,7 +55,7 @@
                 },
                 "vllmSelected": {
                     "title": "Use vLLM",
-                    "type": "bool",
+                    "type": "boolean",
                     "description": "Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case.",
                     "default": false
                 },
@@ -77,7 +77,7 @@
                 },
                 "existingModelServer": {
                     "title": "Use Existing Model Server",
-                    "type": "bool",
+                    "type": "boolean",
                     "description": "Adds support of existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.",
                     "default": false
                 },
@@ -88,7 +88,7 @@
                 },
                 "includeModelEndpointSecret": {
                     "title": "Existing Model Bearer Authentication Support",
-                    "type": "bool",
+                    "type": "boolean",
                     "description": "Adds support for bearer authentication for the existing model server endpoint.",
                     "default": false
                 },

@@ -4,10 +4,10 @@ entries:
   - annotations:
       charts.openshift.io/name: Chatbot AI Sample
     apiVersion: v2
-    created: "2025-02-04T19:18:28.024283066Z"
+    created: "2025-02-04T19:20:02.637367954Z"
     description: This Helm Chart deploys a Large Language Model (LLM)-enabled [chat
       bot application](https://github.com/redhat-ai-dev/ai-lab-samples/tree/main/chatbot).
-    digest: bd4663d9484df729124faa3f64ab92f765e4f23ff3e3535c178081bf1d9d53c6
+    digest: 3530f0e7bf5b1024abe0e22bd6b9bea3a6f312374f17ea81fb7750b72a79a7c2
     home: https://github.com/redhat-ai-dev/ai-lab-helm-charts
     keywords:
     - chatbot
@@ -27,7 +27,7 @@ entries:
   - annotations:
       charts.openshift.io/name: Chatbot AI Sample
     apiVersion: v2
-    created: "2025-02-04T19:18:28.023877682Z"
+    created: "2025-02-04T19:20:02.636955528Z"
     description: A Helm chart for the Chatbot AI Sample app. For more information
       please check https://github.com/redhat-ai-dev/ai-lab-helm-charts.git
     digest: bac85183b95626eab11e8f8e2ff9868f727a723ff196b268765208f7f7776961
@@ -37,4 +37,4 @@ entries:
     urls:
     - chatbot-ai-sample-0.1.1.tgz
     version: 0.1.1
-generated: "2025-02-04T19:18:28.023511021Z"
+generated: "2025-02-04T19:20:02.636582331Z"

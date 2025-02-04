@@ -15,19 +15,19 @@ model:
   modelServiceContainer: "quay.io/ai-lab/llamacpp_python:latest"
   # -- The exposed port of the model service
   modelServicePort: 8001
-  # -- The bool variable for support of vllm instead of llama_cpp. Be sure that your system has GPU support for this case.
+  # -- Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case.
   vllmSelected: false
-  # -- The image used for the model service for the VLLM use case.
+  # -- The image used for the model service for the vLLM use case.
   vllmModelServiceContainer: ""
-  # -- The name of the model. By defaults it is set to instructlab/granite-7b-lab. It is used only for vllm and/or existing model service cases.
+  # -- The name of the model. It is used only in the vLLM use case.
   modelName: ""
   # -- The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.
   maxModelLength: 4096
-  # -- The bool variable for support of existing model server
+  # -- Adds support of existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.
   existingModelServer: false
   # -- The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true.
   modelEndpoint: ""
-  # -- The bool variable for support of bearer token authentication for existing model server authentication
+  # -- Adds support for bearer authentication for the existing model server endpoint.
   includeModelEndpointSecret: false
   # -- The name of the secret storing the credentials for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true.
   modelEndpointSecretName: ""

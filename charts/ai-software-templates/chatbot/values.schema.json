@@ -65,7 +65,7 @@
             "properties": {
                 "existingModelServer": {
                     "default": false,
-                    "description": "Adds support of existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.",
+                    "description": "Adds support of an existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.",
                     "title": "Use Existing Model Server",
                     "type": "boolean"
                 },

@@ -85,7 +85,7 @@
                     "default": 4096,
                     "description": "The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.",
                     "title": "Model Max Length",
-                    "type": "string"
+                    "type": "integer"
                 },
                 "modelEndpoint": {
                     "description": "The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true.",

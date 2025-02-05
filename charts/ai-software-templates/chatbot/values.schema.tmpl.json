@@ -71,7 +71,7 @@
                 },
                 "maxModelLength": {
                     "title": "Model Max Length",
-                    "type": "string",
+                    "type": "integer",
                     "description": "The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.",
                     "default": 4096
                 },

@@ -52,6 +52,55 @@
                     "type": "string",
                     "description": "The path of the model file inside the model service container.",
                     "default": "/model/model.file"
+                },
+                "vllmSelected": {
+                    "title": "Use vLLM",
+                    "type": "boolean",
+                    "description": "Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case.",
+                    "default": false
+                },
+                "vllmModelServiceContainer": {
+                    "title": "vLLM Image",
+                    "type": "string",
+                    "description": "The image used for the model service for the vLLM use case."
+                },
+                "modelName": {
+                    "title": "Model Name",
+                    "type": "string",
+                    "description": "The name of the model. It is used only in the vLLM use case."
+                },
+                "maxModelLength": {
+                    "title": "Model Max Length",
+                    "type": "integer",
+                    "description": "The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.",
+                    "default": 4096
+                },
+                "existingModelServer": {
+                    "title": "Use Existing Model Server",
+                    "type": "boolean",
+                    "description": "Adds support of an existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.",
+                    "default": false
+                },
+                "modelEndpoint": {
+                    "title": "Existing Model Endpoint URL",
+                    "type": "string",
+                    "description": "The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true."
+                },
+                "includeModelEndpointSecret": {
+                    "title": "Existing Model Bearer Authentication Support",
+                    "type": "boolean",
+                    "description": "Adds support for bearer authentication for the existing model server endpoint.",
+                    "default": false
+                },
+                "modelEndpointSecretName": {
+                    "title": "Existing Model Endpoint Secret Name",
+                    "type": "string",
+                    "description": "The name of the secret storing the credentials for the existing model service for bearer authentication. Is used only if includeModelEndpointSecret is set to true."
+                },
+                "modelEndpointSecretKey": {
+                    "title": "Existing Model Endpoint Secret Key",
+                    "type": "string",
+                    "description": "The name of the secret field storing the bearer value for the existing model service if the endpoint requires bearer authentication. Is used only if includeModelEndpointSecret is set to true."
                 }
             }
         },

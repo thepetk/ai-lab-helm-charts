@@ -23,7 +23,7 @@ model:
   modelName: ""
   # -- The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.
   maxModelLength: 4096
-  # -- Adds support of existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.
+  # -- Adds support of an existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases.
   existingModelServer: false
   # -- The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true.
   modelEndpoint: ""

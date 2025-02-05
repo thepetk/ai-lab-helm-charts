@@ -81,8 +81,8 @@ Kubernetes: `>= 1.27.0-0`
 | gitops.gitSourceRepo | string | `"redhat-ai-dev/ai-lab-samples"` | The Github Repository with the contents of the ai-lab sample chatbot application |
 | gitops.githubOrgName | string | `""` | [REQUIRED] The Github Organization name that the chatbot application repository will be created in |
 | gitops.quayAccountName | string | `""` | [REQUIRED] The quay.io account that the application image will be pushed |
-| model.existingModelServer | boolean | `false` | Adds support of existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases. |
-| model.includeModelEndpointSecret | boolean | `false` | Adds support for bearer authentication for the existing model server endpoint. |
+| model.existingModelServer | bool | `false` | Adds support of existing model server for the deployed application. If selected it overrides the vLLM & llama.cpp use cases. |
+| model.includeModelEndpointSecret | bool | `false` | Adds support for bearer authentication for the existing model server endpoint. |
 | model.initContainer | string | `"quay.io/redhat-ai-dev/granite-7b-lab:latest"` | The image used for the initContainer of the model service deployment |
 | model.maxModelLength | int | `4096` | The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096. |
 | model.modelEndpoint | string | `""` | The endpoint url of the model for the existing model service case. Is used only if existingModelServer is set to true. |
@@ -94,6 +94,6 @@ Kubernetes: `>= 1.27.0-0`
 | model.modelServiceContainer | string | `"quay.io/ai-lab/llamacpp_python:latest"` | The image used for the model service. For the VLLM case please see vllmModelServiceContainer |
 | model.modelServicePort | int | `8001` | The exposed port of the model service |
 | model.vllmModelServiceContainer | string | `""` | The image used for the model service for the vLLM use case. |
-| model.vllmSelected | boolean | `false` | Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case. |
+| model.vllmSelected | bool | `false` | Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case. |
 
 **NOTE:** Your helm release's name will be used as the name of the application github repository

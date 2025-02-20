@@ -1,0 +1,44 @@
+
+{{ template "chart.deprecationWarning" . }}
+# Model Server Sample Helm Chart
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+## Background
+
+This Helm Chart creates the following components:
+
+### The Model Service
+By default the `model-server` uses the `llama.cpp` inference via the [ai-lab-recipes model server](https://github.com/containers/ai-lab-recipes/tree/main/model_servers/llamacpp_python).
+
+For the `vLLM` model service case, the `Values.model.vllmSelected` value should be `true`, the `Values.model.vllmModelServiceContainer` and the `Values.model.modelName` should be configured too.
+
+## Installation
+
+### Using the OpenShift Developer Catalog
+
+This Helm Chart can be installed from the [Developer Catalog](https://docs.openshift.com/container-platform/4.17/applications/creating_applications/odc-creating-applications-using-developer-perspective.html#odc-using-the-developer-catalog-to-add-services-or-components_odc-creating-applications-using-developer-perspective) using the [OpenShift Developer Console](https://docs.openshift.com/container-platform/4.17/web_console/web-console-overview.html#about-developer-perspective_web-console-overview).
+
+### Using the Helm Install Command
+
+This Helm Chart can be installed via the command line by running the following command:
+
+```
+helm upgrade --install <release-name> --namespace <release-namespace> .
+```
+
+**NOTE:**
+You can create a `private-values.yaml` file that will be ignored by git to pass values to your Helm Chart.
+Just copy the existing `values.yaml` file in this directory to `private-values.yaml` and make any necessary edits, then update your installation command as shown below:
+
+```shell
+helm upgrade --install <release-name> --namespace <release-namespace> -f ./private-values.yaml .
+```
+
+{{ template "chart.maintainersSection" . }}
+{{ template "chart.sourcesSection" . }}
+{{ template "chart.requirementsSection" . }}
+{{ template "chart.valuesSection" . }}
+
+**NOTE:** Your helm release's name will be used as the name of the application github repository

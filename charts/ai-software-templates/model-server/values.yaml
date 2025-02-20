@@ -1,0 +1,19 @@
+model:
+  # -- The image used for the initContainer of the model service deployment
+  initContainer: "quay.io/redhat-ai-dev/granite-7b-lab:latest"
+  # -- The model service initContainer command
+  modelInitCommand: "['/usr/bin/install', '/model/model.file', '/shared/']"
+  # -- The path of the model file inside the model service container
+  modelPath: "/model/model.file"
+  # -- The image used for the model service. For the VLLM case please see vllmModelServiceContainer
+  modelServiceContainer: "quay.io/ai-lab/llamacpp_python:latest"
+  # -- The exposed port of the model service
+  modelServicePort: 8001
+  # -- Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case.
+  vllmSelected: false
+  # -- The image used for the model service for the vLLM use case.
+  vllmModelServiceContainer: ""
+  # -- The name of the model. It is used only in the vLLM use case.
+  modelName: ""
+  # -- The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.
+  maxModelLength: 4096

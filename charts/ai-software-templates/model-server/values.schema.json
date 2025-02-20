@@ -4,7 +4,6 @@
         "model": {
             "properties": {
                 "initContainer": {
-                    "default": "quay.io/redhat-ai-dev/granite-7b-lab:latest",
                     "description": "The image used for the initContainer of the model service deployment.",
                     "title": "Init Container",
                     "type": "string"
@@ -16,24 +15,22 @@
                     "type": "integer"
                 },
                 "modelInitCommand": {
-                    "default": "['/usr/bin/install', '/model/model.file', '/shared/']",
                     "description": "The model service initContainer command.",
                     "title": "Init Command",
                     "type": "string"
                 },
                 "modelName": {
+                    "default": "ibm-granite/granite-3.1-8b-instruct",
                     "description": "The name of the model. It is used only in the vLLM use case.",
                     "title": "Model Name",
                     "type": "string"
                 },
                 "modelPath": {
-                    "default": "/model/model.file",
                     "description": "The path of the model file inside the model service container.",
                     "title": "Path",
                     "type": "string"
                 },
                 "modelServiceContainer": {
-                    "default": "quay.io/ai-lab/llamacpp_python:latest",
                     "description": "The image used for the model service.",
                     "title": "Service Container",
                     "type": "string"
@@ -45,12 +42,13 @@
                     "type": "integer"
                 },
                 "vllmModelServiceContainer": {
+                    "default": "quay.io/redhat-ai-dev/vllm-openai-ubi9:v0.6.6",
                     "description": "The image used for the model service for the vLLM use case.",
                     "title": "vLLM Image",
                     "type": "string"
                 },
                 "vllmSelected": {
-                    "default": false,
+                    "default": true,
                     "description": "Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case.",
                     "title": "Use vLLM",
                     "type": "boolean"

@@ -52,14 +52,14 @@ Kubernetes: `>= 1.27.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| model.initContainer | string | `"quay.io/redhat-ai-dev/granite-7b-lab:latest"` | The image used for the initContainer of the model service deployment |
+| model.initContainer | string | `""` | The image used for the initContainer of the model service deployment |
 | model.maxModelLength | int | `4096` | The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096. |
-| model.modelInitCommand | string | `"['/usr/bin/install', '/model/model.file', '/shared/']"` | The model service initContainer command |
-| model.modelName | string | `""` | The name of the model. It is used only in the vLLM use case. |
-| model.modelPath | string | `"/model/model.file"` | The path of the model file inside the model service container |
-| model.modelServiceContainer | string | `"quay.io/ai-lab/llamacpp_python:latest"` | The image used for the model service. For the VLLM case please see vllmModelServiceContainer |
+| model.modelInitCommand | string | `""` | The model service initContainer command |
+| model.modelName | string | `"ibm-granite/granite-3.1-8b-instruct"` | The name of the model. It is used only in the vLLM use case. |
+| model.modelPath | string | `""` | The path of the model file inside the model service container |
+| model.modelServiceContainer | string | `""` | The image used for the model service. For the VLLM case please see vllmModelServiceContainer |
 | model.modelServicePort | int | `8001` | The exposed port of the model service |
-| model.vllmModelServiceContainer | string | `""` | The image used for the model service for the vLLM use case. |
-| model.vllmSelected | bool | `false` | Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case. |
+| model.vllmModelServiceContainer | string | `"quay.io/redhat-ai-dev/vllm-openai-ubi9:v0.6.6"` | The image used for the model service for the vLLM use case. |
+| model.vllmSelected | bool | `true` | Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case. |
 
 **NOTE:** Your helm release's name will be used as the name of the application github repository

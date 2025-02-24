@@ -1,7 +1,7 @@
 
 Thank you for installing the Model Server Sample Application!
 
-Now that you have deployed the chatbot application, you can find more details here:
+Now that you have deployed the model-server, you can find more details here:
 
 https://github.com/redhat-ai-dev/ai-lab-helm-charts
 

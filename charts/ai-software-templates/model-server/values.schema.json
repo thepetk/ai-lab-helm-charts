@@ -57,6 +57,6 @@
             "type": "object"
         }
     },
-    "title": "Chatbot AI Sample Helm Chart",
+    "title": "Model Server Sample Helm Chart",
     "type": "object"
 }

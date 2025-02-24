@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "title": "Chatbot AI Sample Helm Chart",
+    "title": "Model Server Sample Helm Chart",
     "properties": {
         "model": {
             "type": "object",

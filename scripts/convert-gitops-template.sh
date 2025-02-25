@@ -69,6 +69,12 @@ convert() {
         sed -i '1i {{ if not .Values.model.existingModelServer }}' "$input_file"
         sed -i '$a {{ end }}' "$input_file"
     fi
+
+    # add pvc resource only for the vllm case.
+    if [[ $input_file == *"pvc"* ]]; then
+        sed -i '1i {{ if not .Values.model.vllmSelected }}' "$input_file"
+        sed -i '$a {{ end }}' "$input_file"
+    fi
 }
 
 convert_all() {
@@ -91,6 +97,15 @@ convert_all() {
     done
 }
 
+reset_repo() {
+    REPO_DIR="$1"
+    ORIGINAL_DIR="$2"
+
+    cd "$REPO_DIR"
+    git reset --hard
+    cd "$ORIGINAL_DIR"
+}
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" 
 ROOT_DIR=$(realpath "$SCRIPT_DIR"/..)
 
@@ -110,6 +125,7 @@ ENVS_DIR=$SCRIPT_DIR/envs
 git clone -b "$BRANCH" "$REPO" "$TEMP_DIR" > /dev/null 2>&1 
 
 for env in "$ENVS_DIR"/*; do
+    reset_repo "$TEMP_DIR" "$ROOT_DIR"
     echo "Sourcing env $env"
     if [[ "$env" == *"_base"* ]]; then
         # skipping execution for the base env

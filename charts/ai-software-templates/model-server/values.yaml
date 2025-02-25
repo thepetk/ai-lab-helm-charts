@@ -1,0 +1,19 @@
+model:
+  # -- The image used for the initContainer of the model service deployment.
+  initContainer: ""
+  # -- The model service initContainer command.
+  modelInitCommand: ""
+  # -- The path of the model file inside the model service container.
+  modelPath: ""
+  # -- The image used for the model service. For the VLLM case please see vllmModelServiceContainer.
+  modelServiceContainer: ""
+  # -- The exposed port of the model service.
+  modelServicePort: 8001
+  # -- Adds support of vLLM instead of llama_cpp. Be sure that your system has GPU support for this case.
+  vllmSelected: true
+  # -- The image used for the model service for the vLLM use case.
+  vllmModelServiceContainer: "quay.io/redhat-ai-dev/vllm-openai-ubi9:v0.6.6"
+  # -- The name of the model. It is used only in the vLLM use case.
+  modelName: "ibm-granite/granite-3.1-8b-instruct"
+  # -- The maximum sequence length of the model. It is used only for the vllm case and the default value is 4096.
+  maxModelLength: 4096

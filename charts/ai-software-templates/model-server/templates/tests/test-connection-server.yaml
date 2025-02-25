@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: quay.io/quay/busybox:latest
       command: ["wget"]
-      args: ["{{ .Release.Name }}:{{ .Values.model.modelServicePort }}/"]
+      args: ["{{ .Release.Name }}-model-server:{{ .Values.model.modelServicePort }}/"]
   restartPolicy: Never

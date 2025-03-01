@@ -9,15 +9,9 @@ metadata:
 spec:
   containers:
     - name: curl
-      image: curlimages/curl:latest
+      image: quay.io/curl/curl:latest
       command:
         - "sh"
         - "-c"
-        - >
-          for i in {1..5}; do
-            curl -sSf http://{{ .Release.Name }}-model-server:{{ .Values.model.modelServicePort }}/v1/models && exit 0;
-            echo 'Retrying in 5s...';
-            sleep 5;
-          done;
-          exit 1;
+        - curl -sSf http://{{ .Release.Name }}-model-server:{{ .Values.model.modelServicePort }}/v1/models && exit 0;
   restartPolicy: Never
